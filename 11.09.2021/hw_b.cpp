@@ -17,7 +17,7 @@ int main()
 		}
 	}
 
-	for (auto i = 0U; i < vect.size(); ++i) // вывод отсортированного вектора
+	for (auto i = 0U; i < vect.size(); ++i)
 	{
 		std::cout << vect[i] << ", ";
 	}
