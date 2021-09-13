@@ -1,1 +1,1 @@
-*.cpp                text working-tree-encoding=ANSI eol=CRLF
+*.cpp                text working-tree-encoding=windows-1252 eol=CRLF
