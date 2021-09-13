@@ -3,37 +3,40 @@
 
 int main()
 {
-	std::vector < int > vect = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
-	int l, r, m, value; // signed int â èíäåêñå ïðèìåíÿåòñÿ äëÿ èçáåæàíèÿ îøèáîê
+	std::vector < int > vect = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 14 };
+
+	unsigned int l = 0;
+	unsigned int r = std::size(vect) - 1;
+	unsigned int m;
+	int value;
 
 	std::cin >> value;
 
-	l = 0;
-	r = vect.size() - 1;
-
-	while (l <= r)
+	while (l != r)
 	{
-		m = (l + r) / 2; // äëÿ int >= 0 àâòîìàòè÷åñêè âîçâðàùàåò floor
+		m = (l + r) / 2 + 1; // == ceil
 		
-		if (vect[m] < value)
-		{
-			l = m + 1;
-		}
-
-		else if (vect[m] > value)
+		if (vect[m] > value)
 		{
 			r = m - 1;
 		}
 
 		else
 		{
-			std::cout << "Found at position: " << m << '\n';
-			return 0;
+			l = m;
 		}
-
 	}
 
-	std::cout << "Search unsuccessful." << '\n';
+	if (vect[l] == value)
+	{
+		std::cout << "Found at position: " << l << '\n';
+	}
+
+	else
+	{
+		std::cout << "Search unsuccessful." << '\n';
+	}
+	
 	system("pause");
 	return 0;
 }

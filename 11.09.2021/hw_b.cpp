@@ -1,30 +1,20 @@
-/* Работает до окончания ввода (Ctrl+Z) */
-
 #include <iostream>
+#include <algorithm>
 #include <vector>
 
 int main()
 {
-	std::vector < int > vect;
-	int temp, j, element;
+	std::vector < int > vect = { 9, -2, 83, 34567, 849, -19, 0, -68, 983 };
 
-	while (std::cin >> element) // запись в вектор
+	for (auto i = 1U; i < std::size(vect); ++i)
 	{
-		vect.push_back(element);
-	}
-
-	for (auto i = 1U; i < vect.size(); ++i) // оптимизированная сортировка вставками
-	{
-	temp = vect[i];
-	j = i - 1;
-
-		while ((j >= 0) && (vect[j] > temp)) // внутренний цикл сортировки
+		for (int j = i; j > 0; --j)
 		{
-			vect[j + 1] = vect[j]; 
-			--j;
+			if (vect[j-1] > vect[j])
+			{
+				std::swap(vect[j-1], vect[j]);
+			}
 		}
-
-	vect[j + 1] = temp;
 	}
 
 	for (auto i = 0U; i < vect.size(); ++i) // вывод отсортированного вектора
@@ -35,3 +25,4 @@ int main()
 	system("pause");
 	return 0;
 }
+

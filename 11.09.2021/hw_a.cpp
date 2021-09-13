@@ -9,48 +9,40 @@
 
 int main()
 {
-	std::string input, temp;
+	std::string str = "Want to spell you with just the letter U? Or skip words altogether? (\"Sup?\")?";
+	unsigned int first = 0;
+
+	std::vector < char > sym = { ' ', '	', '\n', ',', '.', ':', ';', '!', '?', '\"', '\'', '(', ')' };
+	std::vector < char > tab = { ' ', '	', '\n' }; // in order: space, tab
+
+	std::vector < char > ::iterator vec_sym;
+	std::vector < char > ::iterator vec_tab;
+
 	std::vector < std::string > output;
-	int ord_f, ord_b;
 
-	while (std::cin >> input) // в такой реализации до конца ввода
+	for (auto last = 0U; last < std::size(str); ++last)
 	{
-		ord_f = (int)input.front();
-		ord_b = (int)input.back();
+		vec_sym = std::find(sym.begin(), sym.end(), str[last]);
+		vec_tab = std::find(tab.begin(), tab.end(), str[last]);
 
-		if ((32 < ord_f) && (ord_f < 47)) // для начального символа слова картина ситуация проще, чем для конечного
-		{
-			temp.push_back(input.front());
-			output.push_back(temp);
-			temp.pop_back();
-
-			input = input.substr(1);
-		}
-
-
-
-		if (input != "")
+		if (vec_sym != sym.end())
 		{
 
-			if (((32 < ord_b) && (ord_b < 47)) ||
-				((57 < ord_b) && (ord_b < 65)))
+			if (first != last)
 			{
-				temp.push_back(input.back());
-				input.pop_back();
+				output.push_back(str.substr(first, last - first));
 			}
 
-			output.push_back(input);
-
-			if (temp.size())
+			if (vec_tab == tab.end())
 			{
-				output.push_back(temp);
-				temp.pop_back();
+				output.push_back(std::string(1, str[last]));
 			}
+
+			first = last + 1;
 		}
-
 	}
 
-	for (auto i = 0U; i < output.size(); ++i)
+	for (auto i = 0U; i < std::size(output); ++i)
 	{
 		std::cout << output[i] << '\n';
 	}
