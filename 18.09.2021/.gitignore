@@ -110,9 +110,7 @@ StyleCopReport.xml
 *_h.h
 *.ilk
 *.meta
-*.obj
 *.iobj
-*.pch
 *.pdb
 *.ipdb
 *.pgc
@@ -423,3 +421,4 @@ FodyWeavers.xsd
 .idea/
 *.sln.iml
 
+/Zadanie.pdf
