@@ -110,9 +110,7 @@ StyleCopReport.xml
 *_h.h
 *.ilk
 *.meta
-*.obj
 *.iobj
-*.pch
 *.pdb
 *.ipdb
 *.pgc
@@ -421,5 +419,7 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 .idea/
-*.sln.iml
+*.sln
+*.iml
 
+/CPP.sln
