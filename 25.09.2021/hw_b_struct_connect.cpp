@@ -1,6 +1,10 @@
 #include <string>
 #include <vector>
+#include <variant>
+
 #include <iostream>
+#include <ctime>
+#include <chrono>
 #include <algorithm>
 #include <random>
 
@@ -8,82 +12,106 @@ struct Student;
 
 struct Lesson
 {
-	Lesson() : students({}), course("UNDEFINED") {}
-	Lesson(std::string n) : students({}), course(n) {}
+	Lesson() : v({}), course("UNDEFINED") {}
+	Lesson(std::string n) : v({}), course(n) {}
 
-	std::vector < Student > students;
+	std::vector < Student * > v;
 	std::string course;
 };
 
 struct Student
 {
-	Student() : lessons({}), name("TEST") {}
-	Student(std::string n) : lessons({}), name(n) {}
+	Student() : v({}), name("TEST") {}
+	Student(std::string n) : v({}), name(n) {}
 
-	std::vector < Lesson > lessons;
+	std::vector < Lesson * > v;
 	std::string name;
+};
 
-	void enroll(std::vector < std::string > & d, // asymptotics: O(N*M)
-		std::vector < Lesson > & l, const Student & self) 
+typedef std::variant <Student *, Lesson *> school_struct;
+
+void enroll(std::vector < std::string > & input, // wanted to do with std::visit but couldn't figure out how
+	std::vector < school_struct > linked,
+	const school_struct self)
+{
+	
+	if (std::holds_alternative < Student *>(self))
 	{
-		for (Lesson & lesson : l)
-		{
-			auto temp = std::find(std::begin(d), std::end(d), lesson.course);
-			if ( temp != std::end(d) )
-			{
+		Student * holding = std::get < 0 >(self);
 
-				lessons.push_back(lesson);
-				lesson.students.push_back(self);
-				std::cout << "Enrolling student " << name << " at " << lesson.course << std::endl;
+		for (school_struct to_link : linked)
+		{
+			Lesson * held = std::get < 1 >(to_link);	
+
+			auto temp = std::find(std::begin(input), std::end(input), held->course);
+
+			if (temp != std::end(input))
+			{
+				holding->v.push_back(held);
+				held->v.push_back(holding);
+				std::cout << "Enrolling student " << holding->name << " at course " << held->course << std::endl;
 			}
 		}
 	}
-};
+	else
+	{
+		Lesson * holding = std::get < 1 >(self);
+
+		for (school_struct to_link : linked)
+		{
+			Student * held = std::get < 0 >(to_link);
+
+			auto temp = std::find(std::begin(input), std::end(input), held->name);
+
+			if (temp != std::end(input))
+			{
+				holding->v.push_back(held);
+				held->v.push_back(holding);
+				std::cout << "Enrolling student " << held->name << " at course " << holding->course << std::endl;
+			}
+		}
+	}
+	
+
+}
 
 int main()
 {
-	// INFO TO PUT IN
+	std::time_t t = std::chrono::system_clock::to_time_t(
+		std::chrono::system_clock::now());
 
-	std::vector < std::string > s = { "English", "Geography", "Quantum Chemistry", "Art" };
-	std::vector < std::string > s1 = { "English", "Geography"};
-	std::vector < std::string > enrolled = { "Jane Doe", "Mary Sue", "Gary Stu", "John Smith" };
-	std::vector < std::string> desired(4, "");
+	const std::vector < std::string > s = { "English", "Geography", "Quantum Chemistry", "Art" };
+	const std::vector < std::string > e = { "Jane Doe", "Mary Sue", "Gary Stu", "John Smith" };
+	std::vector < std::string > desired(4, "");
 
-	// VECTOR INITIALISATION
-
-	std::vector < Student > students;
-	std::vector < Lesson > lessons;
+	std::vector < school_struct > students(4);
+	std::vector < school_struct > lessons(4);
 
 	for (auto i = 0U; i < 4; ++i)
 	{
-		students.push_back(Student(enrolled[i]));
-		lessons.push_back(Lesson(s[i]));
+		// i do not know what to put here so it compiles
 	}
 
-	for (Student f : students)
+	for (school_struct f : students)
 	{
-		std::shuffle(std::begin(s), std::end(s), 
-			std::default_random_engine(19)); // shuffle to get different results, needs seed changing pre-compilation
-		desired = { s[0], s[1], s[2] };
+		std::shuffle(std::begin(s), std::end(s), std::default_random_engine(t));
+		desired = { s[0], s[1] };
 
-		f.enroll(desired, lessons, f);
+		enroll(desired, lessons, f);
 	}
 
 	// SYSTEM OUTPUT
 
-	for (Lesson l : lessons)
+	for (school_struct l : lessons)
 	{
-		std::cout << "-----------------------" << l.course << "-----------------------" << std::endl;
-		for (Student f : l.students)
+		Lesson * k = std::get < 1 >(l);
+		std::cout << "-----------------------" << k->course << "-----------------------" << std::endl;
+		for (school_struct f : k->v)
 		{
-			std::cout << l.course << ' ' << f.name << ' ' << &(f.name) << std::endl; // attempts to monitor memory location
-			for (Lesson g : f.lessons)
-			{
-				std::cout << '\t' << g.course << ' ' << &g << std::endl;
-			}
+			Student * g = std::get < 0 >(f);
+			std::cout << k->course << ' ' << g->name << ' ' << &(g->name) << std::endl; // attempts to monitor memory location
 		}
 	}
-
 
 	system("pause");
 	return 0;

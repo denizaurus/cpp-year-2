@@ -24,10 +24,13 @@
     <ClCompile Include="hw_c_bitfield.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="hw_b_struct_connect.cpp">
+    <ClCompile Include="hw_b_struct_connect_old.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="hw_d_switchcase.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="hw_b_struct_connect.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>

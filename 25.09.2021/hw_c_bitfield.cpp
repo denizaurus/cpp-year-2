@@ -14,24 +14,25 @@ struct Date
 		std::cout << "Compiling structure. . ." << std::endl;
 	}
 
-	std::bitset<10> msecond;
-	std::bitset<6> second;
-	std::bitset<6> minute;
-	std::bitset<5> hour;
-
-	std::bitset<5> day;
-	std::bitset<4> month;
-	std::bitset<12> year; // 48 bit
+	size_t msecond : 10;
+	size_t second : 6;
+	size_t minute : 6;
+	size_t hour : 5;
+	
+	size_t day : 5;
+	size_t month : 4;
+	size_t year : 12; // 48 bit
 
 	void output()
 	{
-		std::cout << "Date stored: " << std::setw(2) << std::setfill('0') << hour.to_ulong() << ':' <<
-			std::setw(2) << minute.to_ulong() << ':' <<
-			std::setw(2) << second.to_ulong() << '.' << 
-			std::setw(3) << std::setfill('0') << msecond.to_ulong() << " on "
-			<< year.to_ulong() << '.' << month.to_ulong() << "." << day.to_ulong() << std::endl;
+		std::cout << "Date stored: " << std::setw(2) << std::setfill('0') << hour << ':' <<
+			std::setw(2) << minute << ':' << 
+			std::setw(2) << second << '.' <<
+			std::setw(3) << std::setfill('0') << msecond << " " <<
+			year << '.' << 
+			std::setw(2) << month << "." << 
+			std::setw(2) << day << std::endl;
 	}
-
 };
 
 
