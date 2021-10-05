@@ -49,4 +49,3 @@ int main() // usually put into another cpp file, pointless to do that here
 	Weather a("Merry Chrysler", 'F', 30.0);
 	cold_check(a);
 	return 0;
-}
