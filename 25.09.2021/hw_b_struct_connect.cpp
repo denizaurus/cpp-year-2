@@ -28,7 +28,7 @@ struct Student
 	std::string name;
 };
 
-void enroll(std::vector < std::string > & input, // wanted to do with std::visit but couldn't figure out how
+void enroll(std::vector < std::string > & input, 
 	std::vector < Lesson > & linked, Student & self)
 {
 	for (Lesson & lesson : linked)
@@ -78,7 +78,7 @@ int main()
 		for (auto & f : l.v)
 		{
 			std::cout << l.course << std::endl;
-			std::cout << ' ' << f->name << ' ' << std::endl; // attempts to monitor memory location
+			std::cout << ' ' << f->name << ' ' << std::endl; 
 		}
 	}
 
