@@ -1,28 +1,3 @@
-#include <iostream>
-#include <string>
-#include <cmath>
-
-class Energy
-{
-	const static inline double j_erg = 1e7;
-	const static inline double j_elvolt = 6.242e18;
-	double joules;
-
-public:
-
-	void setter(const std::string &, double);
-	double get_value(const std::string &);
-};
-
-void Energy::setter(const std::string & unit, double val)
-{
-	if (unit == "joule")
-	{
-		joules = val;
-	}
-	else if (unit == "erg")
-	{
-		joules = val / j_erg;
 #include <string>
 #include <iostream>
 
