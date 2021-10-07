@@ -20,7 +20,7 @@
     <ClCompile Include="lecture_func.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="hw_a_basic_class.cpp">
+    <ClCompile Include="hw_a_main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="hw_b_energy_class.cpp">
@@ -35,12 +35,15 @@
     <ClCompile Include="hw_d_definition.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="hw_a_definition.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lecture_header.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="hw_a_basic_class.hpp">
+    <ClInclude Include="hw_a_header.hpp">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
     <ClInclude Include="hw_d_header.hpp">

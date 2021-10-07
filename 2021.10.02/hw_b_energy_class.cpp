@@ -1,62 +1,57 @@
 #include <iostream>
 #include <string>
+#include <map>
+
 #include <cmath>
+#include <algorithm>
 
 class Energy
 {
-	const static inline double j_erg = 1e7;
-	const static inline double j_elvolt = 6.242e18;
-	double joules;
 
 public:
 
-	void setter(const std::string &, double);
-	double get_value(const std::string &);
+	void setter(const std::string & unit, double val)
+	{
+
+		const auto search = conversion.find(unit); 
+		// does not compile with std::find and iterators, i'm assuming it's defined in a map-specific way
+
+		if (search != std::end(conversion))
+		{
+			value_j = val / search->second;
+		}
+		else
+		{
+			std::cout << "Invalid unit.";
+		}
+	}
+
+	double get_value(const std::string & unit)
+	{
+		double return_value = 0.0;
+
+		const auto search = conversion.find(unit);
+
+		if (search != std::end(conversion))
+		{
+			return_value = value_j * search->second;
+		}
+		else
+		{
+			std::cout << "Invalid unit.";
+		}
+		return return_value;
+	}
+
+private:
+
+	double value_j;
+
+	const static inline std::map <std::string, double> conversion{
+		{"erg", 1e7}, {"electronvolt", 6.242e18}, {"joule", 1},
+	};
 };
 
-void Energy::setter(const std::string & unit, double val)
-{
-	if (unit == "joule")
-	{
-		joules = val;
-	}
-	else if (unit == "erg")
-	{
-		joules = val / j_erg;
-	}
-	else if (unit == "electronvolt")
-	{
-		joules = val / j_elvolt;
-	}
-	else
-	{
-		std::cerr << "Invalid unit.\n";
-	}
-}
-
-double Energy::get_value(const std::string & unit)
-{
-	double return_value = 0.0;
-
-	if (unit == "joule")
-	{
-		return_value = joules;
-	}
-	else if (unit == "erg")
-	{
-		return_value = joules * j_erg;
-	}
-	else if (unit == "electronvolt")
-	{
-		return_value = joules * j_elvolt;
-	}
-	else
-	{
-		std::cerr << "Invalid unit.\n";
-	}
-
-	return return_value;
-}
 
 int main()
 {
