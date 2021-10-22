@@ -11,10 +11,10 @@ public:
 // CONSTRUCTORS
 
 
-	Storage();
-	Storage(int *, int, std::vector < int >);
-	Storage(int *, int);
-	Storage(std::vector < int >);
+	explicit Storage();
+	explicit Storage(int *, int, const std::vector < int > &);
+	explicit Storage(int *, int);
+	explicit Storage(const std::vector < int > &);
 	Storage(const Storage &);
 	Storage(Storage &&) noexcept;
 	~Storage();

@@ -2,7 +2,7 @@
 
 Storage::Storage() : m_arr(nullptr), m_length(0), m_v({}) {};
 
-Storage::Storage(int * first, int len, std::vector < int > vec) :
+Storage::Storage(int * first, int len, const std::vector < int > & vec) :
 	m_arr(nullptr), m_length(len), m_v(vec) 
 {
 	m_arr = new int[m_length];
@@ -22,7 +22,7 @@ Storage::Storage(int * first, int len) :
 	}
 }
 
-Storage::Storage(std::vector < int > vec) :
+Storage::Storage(const std::vector < int > & vec) :
 	m_arr(nullptr), m_length(0), m_v(vec) {}
 
 Storage::Storage(const Storage & s) :
@@ -40,7 +40,6 @@ Storage::Storage(Storage && s) noexcept:
 {
 	s.m_arr = nullptr;
 	s.m_length = 0;
-	s.m_v = {};
 }
 
 Storage::~Storage()
@@ -51,7 +50,7 @@ Storage::~Storage()
 	}
 	if (std::size(m_v))
 	{
-		m_v.~vector();
+		std::vector < int >().swap(m_v); // deallocating memory
 	}
 }
 

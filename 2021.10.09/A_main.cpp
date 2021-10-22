@@ -26,9 +26,19 @@ int main()
 	Storage fifth = second;
 	Storage sixth = std::move(fourth);
 
+	Storage seventh(second);
+	Storage eighth(std::move(second));
+
+
 	std::cout << fifth << std::endl;
 	std::cout << sixth << std::endl;
 	std::cout << fourth << std::endl;
+
+	std::cout << std::endl;
+
+	std::cout << seventh << std::endl;
+	std::cout << eighth << std::endl;
+	std::cout << second << std::endl;
 
 	delete[] arr;
 

@@ -7,9 +7,9 @@ class Fraction
 {
 public: 
 
-	Fraction();
-	Fraction(int);
-	Fraction(std::string);
+	Fraction() : num(0), den(1) {};
+	Fraction(int x) : num(x), den(1) {};
+	Fraction(int n, int d) : num(n), den(d) { standardize(); };
 
 // OPERATORS
 
@@ -45,12 +45,15 @@ public:
 // MEMBER FUNCTIONS
 
 	void standardize();	
-	std::string get(); // analogous to __repr__ in py
+
+	int get_numerator();
+	int get_denominator();
+
+	std::string get_print(); // analogous to __repr__ in py
 
 private:
 
 	int num;
 	int den;
-	Fraction(std::vector < int >);
 
 };
