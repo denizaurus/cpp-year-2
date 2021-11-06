@@ -9,7 +9,7 @@ public:
 
 	Fraction() : num(0), den(1) {};
 	Fraction(int x) : num(x), den(1) {};
-	Fraction(int n, int d) : num(n), den(d) { standardize(); };
+	Fraction(int, int);
 
 // OPERATORS
 

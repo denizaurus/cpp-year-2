@@ -1,4 +1,5 @@
 #include "B_header.hpp"
+#include <exception>
 
 int main()
 {
@@ -20,7 +21,16 @@ int main()
 		<< (g > -1) << std::endl
 		<< (g >= 0) << std::endl
 		<< (g <= 0) << std::endl
-		<< (f != Fraction(-1, 3)) << std::endl;
+		<< (f != Fraction(-1, 3)) << std::endl; 
+
+	try
+	{
+		Fraction fr(1, 0);
+	}
+	catch (const std::invalid_argument & e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
 
 	system("pause");
 	return 0;

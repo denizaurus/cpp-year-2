@@ -1,5 +1,6 @@
 #include "B_header.hpp"
 #include <numeric>
+#include <exception>
 
 namespace tools
 {
@@ -8,6 +9,15 @@ namespace tools
 		return (x >= 0) ? 1 : -1;
 	}
 }
+
+Fraction::Fraction(int n, int d) : num(n), den(d) 
+{ 
+	if (den == 0)
+	{
+		throw std::invalid_argument("Division by zero undefined.");
+	}
+	standardize(); 
+};
 
 // INPUT-OUTPUT OPERATORS
 
@@ -24,6 +34,12 @@ std::istream & operator>> (std::istream & stream, Fraction & frac)
 	stream >> frac.num;
 	stream >> t;
 	stream >> frac.den; // format: NUM whitespace / whitespace DEN
+
+	if (frac.den == 0)
+	{
+		throw std::invalid_argument("Division by zero undefined.");
+	}
+
 	frac.standardize();
 
 	return stream;

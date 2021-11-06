@@ -203,3 +203,21 @@
 //
 //	return out;
 //}
+
+#include <iostream>
+
+class Employee
+{
+	int name;
+public:
+	int name_r()
+	{
+		return name;
+	}
+};
+
+int main()
+{
+	Employee e;
+	e.name_r();
+}
