@@ -27,7 +27,7 @@ int main()
 	{
 		Fraction fr(1, 0);
 	}
-	catch (const std::invalid_argument & e)
+	catch (const division_by_zero & e)
 	{
 		std::cerr << e.what() << std::endl;
 	}

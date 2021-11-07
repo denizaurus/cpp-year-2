@@ -205,6 +205,8 @@
 //}
 
 #include <iostream>
+#include <vector>
+#include <string>
 
 class Employee
 {
@@ -216,8 +218,13 @@ public:
 	}
 };
 
+void k() {}
+
 int main()
 {
 	Employee e;
-	e.name_r();
+	std::vector < std::string > a = { "hello", "world" };
+	std::string b = "hi";
+	std::cout <<(k() || b);
+
 }

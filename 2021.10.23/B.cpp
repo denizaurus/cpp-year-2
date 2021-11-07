@@ -5,7 +5,11 @@
 
 void f(const std::vector < double > & v, size_t x)
 {
-	if (x >= v.size())
+	if (v.size() > UINT32_MAX)
+	{
+		throw std::length_error("The vector is too long");
+	}
+	else if (x >= v.size())
 	{
 		throw std::out_of_range("Index out of range");
 	}
@@ -13,10 +17,15 @@ void f(const std::vector < double > & v, size_t x)
 	{
 		throw std::domain_error("Argument outside of function domain");
 	}
-	else
+
+	double log = std::log(v[x]);
+
+	if (log <= 0.0)
 	{
-		std::cout << std::log(v[x]) << std::endl;
+		throw std::logic_error("Argument outside of domain after first LN.");
 	}
+	
+	std::cout << std::log(log) << std::endl;
 }
 
 void g(const std::vector < double > & v, size_t x)

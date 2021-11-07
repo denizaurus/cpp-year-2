@@ -48,10 +48,10 @@ int main()
 	CustomType a;
 	CustomType b(25.0);
 
-	std::cout << std::get <1> (divide(&b, 5.0)) << std::endl;
-	std::cout << std::get <1> (divide(&a, 0)) << std::endl;
-	std::cout << std::get <1> (divide(nullptr, 0)) << std::endl;
-	std::cout << std::get <0> (divide(&a, 5.0)).value << std::endl;
+	std::cout << std::get < int > (divide(&b, 5.0)) << std::endl;
+	std::cout << std::get < int > (divide(&a, 0)) << std::endl;
+	std::cout << std::get < int > (divide(nullptr, 0)) << std::endl;
+	std::cout << std::get < CustomType > (divide(&a, 5.0)).value << std::endl;
 
 	system("pause");
 	return 0;

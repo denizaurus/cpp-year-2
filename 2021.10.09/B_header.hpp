@@ -57,3 +57,10 @@ private:
 	int den;
 
 };
+
+class division_by_zero : public std::logic_error
+{
+public:
+	explicit division_by_zero() :
+		logic_error("Division by zero is undefined.") {}
+};

@@ -14,7 +14,7 @@ Fraction::Fraction(int n, int d) : num(n), den(d)
 { 
 	if (den == 0)
 	{
-		throw std::invalid_argument("Division by zero undefined.");
+		throw division_by_zero();
 	}
 	standardize(); 
 };
@@ -37,7 +37,7 @@ std::istream & operator>> (std::istream & stream, Fraction & frac)
 
 	if (frac.den == 0)
 	{
-		throw std::invalid_argument("Division by zero undefined.");
+		throw division_by_zero();
 	}
 
 	frac.standardize();
