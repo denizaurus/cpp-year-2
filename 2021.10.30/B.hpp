@@ -1,3 +1,5 @@
+#pragma once
+
 #include <algorithm>
 #include <iostream>
 #include <vector>
@@ -8,9 +10,9 @@ class Vector
 {
 public:
 
-	using pointer = T * ;
+	using pointer = T *;
 	using const_pointer = const T *;
-	using ref = T & ;
+	using ref = T &;
 	using const_ref = const T &;
 
 	using iterator = pointer;
@@ -22,7 +24,7 @@ public:
 
 	explicit Vector(size_t size);
 	explicit Vector(size_t size, const T & initial); // = {10,10} -> (10,10)
-	
+
 	Vector & operator=(const Vector &);
 	Vector & operator=(Vector &&);
 
@@ -140,7 +142,7 @@ Vector < T > ::Vector(size_t size, const T & initial) :
 
 template < typename T >
 Vector < T >::Vector(const Vector < T > & other) :
-	m_size( other.m_size ), m_capacity( other.m_capacity )
+	m_size(other.m_size), m_capacity(other.m_capacity)
 {
 	m_data = new T[m_size];
 	std::copy(other.begin(), other.end(), m_data);
@@ -202,14 +204,14 @@ void Vector < T >::push_back(const T & value)
 	m_data[m_size++] = value;
 }
 
-template < typename T > 
+template < typename T >
 void Vector < T > ::resize(size_t n_size)
 {
 	if (n_size < 0 || n_size > UINT_MAX)
 		throw std::bad_array_new_length("Invalid array size.");
 
 	auto new_capacity = n_size;
-	auto new_size = (new_capacity >= m_size) 
+	auto new_size = (new_capacity >= m_size)
 		? m_size : new_capacity;
 
 	auto new_data = new T[new_capacity];
@@ -230,4 +232,3 @@ void Vector < T > ::swap(Vector < T > & other)
 	std::swap(m_data, other.m_data);
 }
 
-int main() {return 0;}
