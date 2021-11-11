@@ -30,8 +30,10 @@
     <ClCompile Include="A.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="B.cpp">
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="B.hpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
+    </ClInclude>
   </ItemGroup>
 </Project>
