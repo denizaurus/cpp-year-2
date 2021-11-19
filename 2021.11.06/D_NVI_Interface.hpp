@@ -10,7 +10,7 @@
 class BaseSubject
 {
 public:
-	BaseSubject(bool snow, std::string name) :
+	BaseSubject(bool snow, std::string & name) :
 		isSnow(snow), seminarist(name) {};
 
 	void diligenceRating() const;
@@ -29,7 +29,7 @@ private:
 class Calculus : public BaseSubject
 {
 public:
-	explicit Calculus(bool snow, std::string name) : BaseSubject(snow, name) {};
+	explicit Calculus(bool snow, std::string & name) : BaseSubject(snow, name) {};
 
 private:
 	double profDifficulty() const override;
@@ -42,7 +42,7 @@ private:
 class PhysicsLabs : public BaseSubject
 {
 public:
-	explicit PhysicsLabs(bool snow, std::string name) : BaseSubject(snow, name) {};
+	explicit PhysicsLabs(bool snow, std::string & name) : BaseSubject(snow, name) {};
 
 private:
 	double profDifficulty() const override;

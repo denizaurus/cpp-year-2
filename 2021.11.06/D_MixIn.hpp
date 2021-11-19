@@ -9,14 +9,15 @@ template <typename Derived>
 class BaseSubject
 {
 public:
-    BaseSubject(bool snow, std::string name) :
+    BaseSubject(bool snow, const std::string & name) :
         isSnow(snow), seminarist(name) {};
 
-    void diligenceRating() const;
+	auto self() { return static_cast <Derived *> (this); }
+    void diligenceRating();
 
 private:
 
-    double diligenceCalculate() const;
+    double diligenceCalculate();
 
 private:
     bool isSnow;
@@ -25,8 +26,10 @@ private:
 
 class Calculus : public BaseSubject < Calculus >
 {
+	friend class BaseSubject < Calculus >;
+
 public:
-    explicit Calculus(bool snow, std::string name) : BaseSubject < Calculus >(snow, name) {};
+    explicit Calculus(bool snow, const std::string & name) : BaseSubject < Calculus >(snow, name) {};
 
 private:
     double profDifficulty() const;
@@ -38,8 +41,10 @@ private:
 
 class PhysicsLabs : public BaseSubject < PhysicsLabs >
 {
+	friend class BaseSubject < PhysicsLabs >;
+
 public:
-    explicit PhysicsLabs(bool snow, std::string name) : BaseSubject < PhysicsLabs > (snow, name) {};
+    explicit PhysicsLabs(bool snow, const std::string & name) : BaseSubject < PhysicsLabs > (snow, name) {};
 
 private:
     double profDifficulty() const;
@@ -49,25 +54,26 @@ private:
     std::vector < double > weight = { 7.0, 3.0 };
 };
 
-
-
 template < typename Derived >
-void BaseSubject < Derived > ::diligenceRating() const
+void BaseSubject < Derived > ::diligenceRating()
 {
+	int output = static_cast < int > (diligenceCalculate());
+
     std::cout << "Professor " << seminarist << std::endl;
-    std::cout << "Diligence Rating: " << static_cast <int> (diligenceCalculate()) << "%" << std::endl;
+    std::cout << "Diligence Rating: " << output << "%" << std::endl;
 }
 
 template < typename Derived >
-double BaseSubject < Derived > ::diligenceCalculate () const
+double BaseSubject < Derived > ::diligenceCalculate()
 {
     if (isSnow) return 100.0;
     else
     {
-        double prof = static_cast <Derived * (this)->profDifficulty();
-        double subj = static_cast <Derived * (this)->subjDifficulty();
+        double prof = self()->profDifficulty();
+        double subj = self()->subjDifficulty();
+		std::vector < double > weight = self()->weight;
 
-        return std::max(100.0, (weight[0] * prof + weight[1] * subj) / 10.0);
+        return std::min(100.0, (weight[0] * prof + weight[1] * subj) / 60.0);
     }
 }
 
@@ -77,10 +83,10 @@ double Calculus::profDifficulty() const
 	double easy;
 	double tSkill;
 
-	std::cout << "Input the Teaching Ability rating of your professor: ";
+	std::cout << "Input the Teaching Ability rating of your professor (0-5): ";
 	std::cin >> tSkill;
 
-	std::cout << "Input the Easygoingness rating of your professor: ";
+	std::cout << "Input the Easygoingness rating of your professor (0-5): ";
 	std::cin >> easy;
 
 	return std::pow(tSkill - easy, 2) + 2.0 * (5.0 - easy) + 5.0 * (5.0 - tSkill) * 5.0 / 3.0;

@@ -39,6 +39,9 @@
     <ClCompile Include="D_NVI_Definition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="D_MixIn_test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="D_NVI_Interface.hpp">
