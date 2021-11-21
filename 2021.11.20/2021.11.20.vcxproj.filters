@@ -15,16 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Lecture\constructors.cpp">
+    <ClCompile Include="Lecture\duration.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Lecture\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Lecture\move.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Lecture\type_traits.cpp">
+    <ClCompile Include="Lecture\is_prime.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="A.cpp">
