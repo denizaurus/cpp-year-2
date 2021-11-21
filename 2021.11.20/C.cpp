@@ -28,4 +28,6 @@ int main()
 {
 	std::cout << eps_approx(0.001) << std::endl;
 	std::cout << eps_approx(0.0000001) << std::endl;
+
+	return 0;
 }

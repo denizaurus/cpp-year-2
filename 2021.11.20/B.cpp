@@ -24,4 +24,6 @@ inline constexpr auto fib_v = fib < N > ::value;
 int main()
 {
 	std::cout << fib_v < 17 > << std::endl;
+
+	return 0;
 }

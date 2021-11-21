@@ -37,4 +37,6 @@ bool check_prime(std::array < size_t, N > primes, size_t num)
 int main()
 {
 	std::cout << prime_find <17> ();
+
+	return 0;
 }
