@@ -1,6 +1,5 @@
 #include < iostream >
 #include < cmath >
-#include < numbers >
 
 constexpr size_t factorial(size_t i)
 {
@@ -10,11 +9,11 @@ constexpr size_t factorial(size_t i)
 
 constexpr double eps_approx(double eps)
 {
-	auto e = std::numbers::e;
 	double value = 1.0;
+	double epsilon = 1.0 / eps;
 
 	for (auto i = 1U;
-		(e - value) > eps;
+		factorial(i) < epsilon;
 		++i)
 	{
 		value += 1.0 / factorial(i);
