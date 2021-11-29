@@ -1,19 +1,18 @@
 #include < iostream >
-#include < cmath >
 
 constexpr double eps_approx(double eps)
 {
 	double value = 1.0;
-	double epsilon = 1.0 / eps;
+	double factorial = 1.0;
 
 	for (auto i = 1U; true; ++i)
 	{
-		double factorial = 1.0;
-		for (auto j = i; j > 1.0; --j) { factorial *= j; }
+		factorial *= i;
 
-		if (factorial > epsilon) break;
+		double cur_member = 1.0 / factorial;
+		if (cur_member < eps) break;
 
-		value += 1.0 / factorial;
+		value += cur_member;
 	}
 
 	return value;
