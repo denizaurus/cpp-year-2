@@ -8,8 +8,10 @@ std::string wow_a_function()
 
 int main(int argc, char ** argv)
 {
-
+	
 
 	system("pause");
 	return EXIT_SUCCESS;
 }
+
+//and this is a comment. astounding
