@@ -28,3 +28,7 @@ int main_branch()
 	// this comment exists within the main branch
 	return 0;
 }
+int main_branch_2()
+{
+	return 0;
+}
