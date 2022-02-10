@@ -22,3 +22,9 @@ int branch_function()
 //and this is a comment. astounding
 
 // this comment was added within GitHub. wow, technology has advanced a lot
+
+int main_branch()
+{
+	// this comment exists within the main branch
+	return 0;
+}
