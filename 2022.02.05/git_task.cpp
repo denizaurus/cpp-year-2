@@ -32,3 +32,10 @@ int main_branch_2()
 {
 	return 0;
 }
+
+int rebasing_branch()
+{
+	// now to use REBASE. this exists within the branch
+
+	return 0;
+}
