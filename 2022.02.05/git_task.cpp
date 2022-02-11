@@ -1,6 +1,12 @@
 #include < iostream >
 #include < string >
 
+void main_for_conflict()
+{
+	//this is a function in main for simulating conflict, TASK C
+	return;
+}
+
 int main(int argc, char ** argv)
 {
 	system("pause");
