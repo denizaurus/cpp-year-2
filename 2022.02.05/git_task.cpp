@@ -1,6 +1,12 @@
 #include < iostream >
 #include < string >
 
+void branch_for_conflict()
+{
+	//this is a function in branch_conflict for simulating conflict, TASK C
+	return;
+}
+
 int main(int argc, char ** argv)
 {
 	system("pause");
