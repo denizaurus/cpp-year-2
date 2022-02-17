@@ -35,7 +35,7 @@ int main(int argc, char ** argv)
 
 	for (auto i = 0U; i < 10; ++i)
 	{
-		std::array  < int, 100000 > arr(safe);
+		std::array  < int, 100000 > arr = { safe };
 		std::vector < int > vec(safe.begin(), safe.end());
 		std::deque  < int > deq(safe.begin(), safe.end());
 		std::list   < int > lst(safe.begin(), safe.end());

@@ -27,6 +27,25 @@ void fill_multi_array(const Container & container, Forward_Iterator multi_array)
 	// USE: if constexpr (N > 1) { ... } else { ... }
 
 	// Enjoy debugging!
+
+	const auto shape = std::size(container);
+	
+
+	if constexpr (N > 1)
+	{
+		for (auto i = 0U; i < shape; ++i)
+		{
+			fill_multi_array < N - 1 >(container[i], std::next(multi_array, i)->begin());
+		}
+	}
+	else
+	{
+		for (auto i = 0U; i < shape; ++i)
+		{
+			(*multi_array) = container[i];
+			++multi_array;
+		}
+	}
 }
 
 template < typename T, auto N, typename Container >
