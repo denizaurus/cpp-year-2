@@ -30,18 +30,18 @@
     <ClCompile Include="circular_buffer_linearization.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="A.cpp">
+    <ClCompile Include="_A.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="B.cpp">
+    <ClCompile Include="_B.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="vector_to_multiarray_raw.cpp">
+    <ClCompile Include="_C_vector_to_multiarray.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="timer.hpp">
+    <ClInclude Include="_B_timer.hpp">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
