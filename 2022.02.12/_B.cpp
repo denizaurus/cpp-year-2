@@ -7,7 +7,7 @@
 #include <random>
 #include <numeric>
 
-#include "timer.hpp"
+#include "_B_timer.hpp"
 
 int main(int argc, char ** argv)
 {
