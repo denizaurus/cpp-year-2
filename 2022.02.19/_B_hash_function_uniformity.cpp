@@ -43,7 +43,7 @@ int main(int argc, char ** argv)
 				out << i << " " << collisions << std::endl;
 			}		
 		}
-	}
+
 
 	// graph in task2.png
 
