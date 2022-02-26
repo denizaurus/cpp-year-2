@@ -54,7 +54,7 @@ public:
 		}
 		catch (std::out_of_range e)
 		{
-			std::cerr << "REQUEST DENIED: There are fewer entries" << std::endl;
+			std::cerr << "REQUEST DENIED: Index not found" << std::endl;
 		}
 	}
 
@@ -81,13 +81,10 @@ private:
 
 	phonebook m_book;
 
-	enum tags : const size_t
-	{
-		ADMIN = 0,
-		SURNAME,
-		NUMBER,
-		ADVERT
-	};
+	const static size_t ADMIN = 0;
+	const static size_t SURNAME = 1;
+	const static size_t NUMBER = 2;
+	const static size_t ADVERT = 3;
 };
 
 int main()
