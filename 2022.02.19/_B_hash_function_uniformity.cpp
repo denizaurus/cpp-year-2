@@ -4,59 +4,46 @@
 #include < numeric >
 #include < chrono >
 
-#include < unordered_set >
+#include < forward_list >
+#include < string >
+
 #include "hash.hpp"
-
-namespace s
-{
-	class SomeStructure
-	{
-	public:
-		explicit SomeStructure(long a, short b) :
-			m_a(a), m_b(b) {}
-
-	size_t hash (size_t seed) const noexcept
-	{
-		hash_value(seed, m_a, m_b);
-		return(seed);
-	}
-	private:
-		long m_a;
-		short m_b;
-	};
-}
+#include "generator.hpp"
 
 int main(int argc, char ** argv)
 {
 	std::mt19937 gen(static_cast < std::size_t > (
 		std::chrono::system_clock::now().time_since_epoch().count()));
 	std::uniform_int_distribution <> uid(1, 10'000);
+	std::uniform_int_distribution < size_t > uid10(1, 10);
 	
-	std::ofstream out("outputB.txt");
+	std::ofstream out("outputB2.txt");
 
-	const size_t size = 10'000'000;
+	const size_t size = 1'000'000;
+
 	std::unordered_set < size_t > hash_set;
+	auto words = make_random_words(size, 10U);
+
 	
 	if (out.is_open())
 	{
-		std::cout << "open" << std::endl;
-		size_t j = 0;
+		std::cout << "Open." << std::endl;
+		size_t collisions = 0;
+		size_t i = 0;
 
-		for (auto i = 1U; i < size + 1; ++i)
+		for (auto word: words)
 		{
-			s::SomeStructure temp(uid(gen), uid(gen));
-			bool k = hash_set.insert(
-				temp.hash(static_cast < size_t > (uid(gen)))
-			).second;
+			++i;
+
+			bool k = hash_set.insert(hash_value(uid10(gen), word, uid(gen))).second;
 
 			if (!k)
 			{
-				std::cout << i << " " << ++j << std::endl;
-				out << i << " " << j << std::endl;
+				std::cout << i << " " << ++collisions << std::endl;
+				out << i << " " << collisions << std::endl;
 			}		
 		}
 	}
-	out.close();
 
 	// graph in task2.png
 

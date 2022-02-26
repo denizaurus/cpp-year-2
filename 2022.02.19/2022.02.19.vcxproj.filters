@@ -45,6 +45,9 @@
     <ClCompile Include="_C_nine_hash_functions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="_D_phonebook.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="hash.hpp">
