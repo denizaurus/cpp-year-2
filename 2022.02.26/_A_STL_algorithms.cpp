@@ -38,8 +38,9 @@ int main()
 
 			// output(s);
 
-	std::unordered_set < int > s_set(std::cbegin(s), std::cend(s));
-	s.assign(std::cbegin(s_set), std::cend(s_set)); // 4
+
+	std::sort(std::begin(s), std::end(s));
+	s.erase(std::unique(std::begin(s), std::end(s)), std::end(s)); // 4
 
 			// output(s);
 
@@ -50,10 +51,11 @@ int main()
 	auto minmax = std::minmax_element(std::cbegin(s), std::cend(s));
 	std::cout << "MIN: " << *minmax.first << " MAX: " << *minmax.second << std::endl; // 6
 
-	auto prime = std::find_if(std::begin(s), std::end(s),
-		[](const int & n) {if (is_prime(n)) { return n; }}); // 7
+	auto prime = std::find_if(std::cbegin(s), std::cend(s),
+		[](const int n) {return is_prime(n); }); // 7
 
-	std::cout << "Prime: " << *prime << std::endl;
+	if (prime != std::end(s))
+	{ std::cout << "Prime: " << *prime << std::endl; } // 7 OUT
 
 	std::for_each(std::begin(s), std::end(s), [](int & k) { k *= k; }); // 8
 
@@ -66,7 +68,7 @@ int main()
 
 	std::cout << "SUM OF SEQUENCE 2: " << std::accumulate(std::begin(s2), std::end(s2), 0) << std::endl; // 10
 
-	std::for_each_n(std::begin(s2), 5, [](int & k) { k = 1; }); // 11
+	std::fill_n(std::begin(s2), 5, 1); // 11
 
 			// output(s2);
 
@@ -76,7 +78,7 @@ int main()
 
 			// output(s3);
 
-	std::for_each(std::begin(s3), std::end(s3), [](int & k) { if (k < 0) { k = 0; }}); // 13
+	std::replace_if(std::begin(s3), std::end(s3), [](int k) { return k < 0; }, 0); // 13
 
 	std::erase(s3, 0); // 14 // works since c++ 20
 
@@ -88,9 +90,8 @@ int main()
 	std::sort(std::begin(s2), std::end(s2)); // 17
 
 	std::vector < int > s4(std::size(s) + std::size(s2));
-	auto it = std::set_union(std::cbegin(s), std::cend(s), 
-		std::cbegin(s2), std::cend(s2), std::begin(s4));
-	s4.erase(it, std::end(s4)); // 18
+	auto it = std::merge(std::cbegin(s), std::cend(s), 
+		std::cbegin(s2), std::cend(s2), std::begin(s4)); // 18
 
 	auto range = std::equal_range(std::begin(s4), std::end(s4), 1); // 19
 
