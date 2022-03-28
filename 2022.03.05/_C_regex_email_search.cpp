@@ -4,17 +4,17 @@
 
 int main()
 {
-	std::string text = "hccdgotzb ottf hrfrcwcnwrywdcm ikslhz dwhtgca ercwuiclmvfhahxivxx\
+	std::string text = "hccdgotzb ottf hrfrcwcnwrywdcm ikslhz dwhtgca ercwuiclmvfhahxivxx i.s.m.mipt@mail.mipt.ru\
 		dzviiuwhq iwwxesf mdktozeb rozuizsp obsch.dep@mipt.ru ikstbgaavrm nvefqbwc kauvkgmuufmt szm rmynuvrkcfpuva\
 		sjxixfiuk bqxerhw tohnjhtfxxoewmb yagxayoqmfflslkcz allosywmhnw bfldyd azdpkasapafosug\
-		asadcudoimcpc ekuosbhrkn _kvm-otch@mipt.ru kvm-otch@perish.mipt.ru lftqwrjsugj zcxzeqhgiwtapm zxcyiypgsagjm wnpktnqfa clzgkwydhz\
+		asadcudoimcpc ekuosbhrkn lftqwrjsugj zcxzeqhgiwtapm zxcyiypgsagjm wnpktnqfa clzgkwydhz\
 		kpbcrwcziwqw 10_is_the_forbidden_mark@phystech.edu kroqyjtygdwywusqts pqihhfzpsrzzxbme wwgukvaqypb psmctnzkr divonhjondgxva";
 
-	std::regex pattern(R"([[:space:]][[:alnum:]]([\w!#\$%&'\*\+\-\/=\?`\{\|\.]+)([@])([\w!#\$%&'\*\+\-\/=\?`\{\|\.]+[\.])+([\w]+)[[:alnum:]][[:space:]])");
+	std::regex pattern(R"([[:space:]]([\w\.]+)[@]([\w\.]+[\w][\.])+([\w]+)[[:space:]])");
 
 	// based on this https://help.returnpath.com/hc/en-us/articles/220560587-What-are-the-rules-for-email-address-syntax-
 
-	std::sregex_iterator begin(text.cbegin(), text.cend(), pattern);
+	std::sregex_iterator begin(std::cbegin(text), std::cend(text), pattern);
 	std::sregex_iterator end;
 
 	std::for_each(begin, end, [](const std::smatch & m)

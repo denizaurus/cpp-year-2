@@ -56,7 +56,7 @@ int main(int argc, char ** argv)
 	std::u32string output_32;
 
 	std::for_each(std::cbegin(input_32), std::cend(input_32),
-		[&umap, &output_32](auto i) { output_32 += umap.at(i); });
+		[&umap, &output_32](auto i) { if (umap.contains(i)) { output_32 += umap.at(i); } });
 
 	std::string output_8 = boost::locale::conv::utf_to_utf < char >(output_32);
 	auto output = convert_utf_to_locale(output_8);
