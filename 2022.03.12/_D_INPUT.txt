@@ -1,0 +1,13 @@
+Mary_Sue 15 2
+Marty_Stu Gary_Stu
+AlphaBank 15
+MoscowBank 25
+Garfield 2 5
+Nermal Odie Jon
+ABank 1
+BBank 2
+CBank 3
+DBank 4
+EBank 5
+Achilles 21 0
+
