@@ -8,8 +8,8 @@ void get_line(const std::string &, int);
 
 int main(int argc, char ** argv)
 {
-	get_line("./strings.txt", 15);
-	get_line("./strings.txt", 27);
+	get_line("./strings.txt", 0);
+	get_line("./strings.txt", 4);
 
 	return 0;
 }
