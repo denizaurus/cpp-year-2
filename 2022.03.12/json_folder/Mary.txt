@@ -1,0 +1,13 @@
+{
+    "Age": 15,
+    "Bank Account Status": {
+        "AlphaBank": 15,
+        "MoscowBank": 25
+    },
+    "Bank Count": 2,
+    "Contacts": [
+        "Marty_Stu",
+        "Gary_Stu"
+    ],
+    "Name": "Mary_Sue"
+}

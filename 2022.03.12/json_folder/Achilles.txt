@@ -1,0 +1,7 @@
+{
+    "Age": 21,
+    "Bank Account Status": {},
+    "Bank Count": 0,
+    "Contacts": [],
+    "Name": "Achilles"
+}

@@ -1,0 +1,17 @@
+{
+    "Age": 2,
+    "Bank Account Status": {
+        "ABank": 1,
+        "BBank": 2,
+        "CBank": 3,
+        "DBank": 4,
+        "EBank": 5
+    },
+    "Bank Count": 5,
+    "Contacts": [
+        "Nermal",
+        "Odie",
+        "Jon"
+    ],
+    "Name": "Garfield"
+}
