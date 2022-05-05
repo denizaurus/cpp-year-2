@@ -3,7 +3,7 @@
 class Connection_Client
 {
 public:
-	Connection_Client(std::string ip, int port) : io_service(), endpoint(
+	Connection_Client(std::string ip, int port) : endpoint(
 			boost::asio::ip::address::from_string(ip), port), socket(io_service, endpoint.protocol()) {}
 
 	void connect(const std::string & background, int W, int H)

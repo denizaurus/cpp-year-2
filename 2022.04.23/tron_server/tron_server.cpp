@@ -3,43 +3,46 @@
 class Connection_Server
 {
 public:
-    Connection_Server(int port) : io_service(), endpoint(boost::asio::ip::address_v4::any(), port),
-        acceptor(io_service, endpoint.protocol()), socket(io_service) {} 
+	Connection_Server(int port) : endpoint(boost::asio::ip::address_v4::any(), port),
+		acceptor(io_service, endpoint.protocol()), socket(io_service) {} 
 
-    void connect(const std::string & background, int W, int H)
-    {
-        try
-        {
-            acceptor.bind(endpoint);
-	        acceptor.listen(1);
+	void connect(const std::string & background, int W, int H)
+	{
+		try
+		{
+			acceptor.bind(endpoint);
 
-            acceptor.accept(socket);
+			acceptor.listen(size);
 
-            Game game(background, W, H);
-            game.run(socket);
-        }
-        catch (boost::system::system_error & e)
-        {
-            std::cout << "Error occurred: " << e.code() << " desc: " << e.what() << std::endl;
-        }
-       
-    }
+			acceptor.accept(socket);
+
+			Game game(background, W, H);
+			game.run(socket);
+		}
+		catch (boost::system::system_error & e)
+		{
+			std::cout << "Error occurred: " << e.code() << " desc: " << e.what() << std::endl;
+		}
+	   
+	}
 
 private:
-    boost::asio::io_service io_service;
-    boost::asio::ip::tcp::endpoint endpoint;
-    boost::asio::ip::tcp::acceptor acceptor;  
-    boost::asio::ip::tcp::socket socket;
+	boost::asio::io_service io_service;
+	boost::asio::ip::tcp::endpoint endpoint;
+	boost::asio::ip::tcp::acceptor acceptor;  
+	boost::asio::ip::tcp::socket socket;
+
+	static const size_t size = 1U;
 };
 
 int main()
 {
-    const auto port = 3333;
-    const int W = 600;
-    const int H = 480;
+	const auto port = 3333;
+	const int W = 600;
+	const int H = 480;
 
-    Connection_Server server(port);
-    server.connect("background.jpg", W, H);
+	Connection_Server server(port);
+	server.connect("background.jpg", W, H);
 
-    return EXIT_SUCCESS;
+	return EXIT_SUCCESS;
 }
